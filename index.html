@@ -7,19 +7,7 @@
 
     <title>Get you a Multitail</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">-->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
 
     <script language="javascript" src="js/lz-string.min.js"></script>
     <script language="javascript" src="js/sprintf.min.js"></script>
@@ -31,81 +19,385 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <style>
+	    *
+	    {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;  
+			font-family: "-apple-system", sans-serif; 
+	    }
+	    
+	    html
+	    {
+		    font-size: 10px;
+	    }
+	    
+	    header
+	    {
+		    width: 80vw;
+		    margin: 3.6rem auto;
+		    text-align: left;
+		    border-bottom: 1px solid #ccc;
+		    padding-bottom: 1.6rem;
+	    }
+	    
+	    h1
+	    {
+		    font-size: 10vw;
+		    letter-spacing: -0.045em;
+		    font-style: italic;
+			font-weight: 800;		    
+	    }
+	    
+	    header p
+	    {
+		    font-size: 4vw;
+		    font-style: italic;
+		    font-weight: 200;
+		    letter-spacing: -0.035em;
+		    color: #666;
+	    }
+	    
         #logformlinetemplate {
             display: none;
         }
+        
+        #builder
+        {
+	        margin: 3.6rem auto;
+	        width: 80vw;
+        }
+		
+		div[style="display: block;"]
+		{
+			margin: 0rem 0;
+			display: flex !important;
+			flex-flow: row nowrap;
+			justify-content: space-around;
+			background-color: #999;
+			padding: 0.35rem 0.35rem;
+			border-radius: 0.8rem;
+			transition: background ease-in 100ms;
+			border: 1px solid transparent;
+/* 			box-shadow: 0px 1px 5px #ccc; */
+		}
+		
+div[data-color="black"]{ background: #000000; }
+div[data-color="red"]{ background: #cc3300; }
+div[data-color="green"]{ background: #00bb33; }
+div[data-color="yellow"]{ background: #eecc00; }
+div[data-color="blue"]{ background: #0033cc; }
+div[data-color="magenta"]{ background: #ee00cc; }
+div[data-color="white"]{ background: #ffffff; border: 1px solid rgba(0,0,0,0.1);}
 
-        /*#link {*/
-        /*display: none;*/
-        /*}*/
+	
+		div.input-group
+		{
+			display: inline-flex; 
+			margin: 0 0.25rem;
+			transition-property: transform;
+			transition-duration: 200ms;
+			transition-timing-function: ease;
+		}
+		
+		div.input-group:nth-child(1)
+		{
+		}
+
+		div.input-group:nth-child(1) input.form-control
+		{
+			-webkit-appearance: none;
+			position: relative;
+			border-radius: 2rem;
+		}
+		
+		div.input-group:nth-child(1) input.form-control
+		{
+			background: rgba(255,255,255,0.5);
+		}
+		
+		div[data-color="yellow"] div.input-group:nth-child(1) input.form-control,
+		div[data-color="magenta"] div.input-group:nth-child(1) input.form-control,
+		div[data-color="white"] div.input-group:nth-child(1) input.form-control
+		{
+			background: rgba(0,0,0,0.5);
+		}
+		
+		div.input-group:nth-child(1) input.form-control:checked
+		{
+			background: rgba(255,255,255,1);
+		}
+
+		div[data-color="yellow"] div.input-group:nth-child(1) input.form-control:checked,
+		div[data-color="magenta"] div.input-group:nth-child(1) input.form-control:checked,
+		div[data-color="white"] div.input-group:nth-child(1) input.form-control:checked
+		{
+			background: rgba(0,0,0,1);
+		}
+		
+		div.input-group:nth-child(1) input.form-control:after
+		{
+			content: "O";
+			font-size: 0.85em;
+			text-indent: 2.44em;
+			line-height: 2em;
+			color: rgba(255,255,255,0.85);
+			font-weight: 100;
+			display: block;
+			width: 2em;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			transform: translateX(-1rem);
+			right: auto;
+			background: rgba(255,255,255,0.55);
+			border-radius: 2em;
+			box-shadow: 0 0 0 rgba(0,0,0,0.85);
+			transition-property: transform;
+			transition-duration: 200ms;
+			transition-timing-function: ease;
+		}
+		
+		div[data-color="yellow"] div.input-group:nth-child(1) input.form-control:after,
+		div[data-color="magenta"] div.input-group:nth-child(1) input.form-control:after,
+		div[data-color="white"] div.input-group:nth-child(1) input.form-control:after
+		{
+			color: rgba(0,0,0,0.85);
+			background: rgba(0,0,0,0.55);
+		}
+		
+		div.input-group:nth-child(1) input.form-control:checked:after
+		{
+			content: "|";
+			color: rgba(0,0,0,0.85);
+			text-indent: -0.95em;
+			transform: translateX(1.3rem);
+			background: rgba(0,0,0,0.75);
+			transition-property: transform;
+			transition-duration: 200ms;
+			transition-timing-function: ease;
+		}
+
+		div[data-color="yellow"] div.input-group:nth-child(1) input.form-control:checked:after,
+		div[data-color="magenta"] div.input-group:nth-child(1) input.form-control:checked:after,
+		div[data-color="white"] div.input-group:nth-child(1) input.form-control:checked:after
+		{
+			color: rgba(255,255,255,0.85);
+			background: rgba(255,255,255,0.75);
+		}
+
+
+		div.input-group:nth-child(1)
+		{
+			flex: 0 0 5em;
+		}
+				
+		div.input-group:nth-child(2)
+		{
+			flex: 2;
+		}
+
+		div.input-group:nth-child(3)
+		{
+			flex: 2;
+		}
+
+		div.input-group:nth-child(4)
+		{
+			flex: 3;
+		}
+
+		div.input-group:nth-child(5)
+		{
+			flex: 5;
+			margin-right: 0;
+		}
+				
+		label.control-label
+		{
+			display: none;
+		}
+		
+		
+		.form-control
+		{
+			font-size: 1.6rem;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			-o-appearance: none;
+			appearance: none;
+			border: none;
+			border-radius: 0.4rem;
+			padding: 0.5rem 1rem;
+			background: rgba(255,255,255,0.35);
+			width: 100%;
+			color: rgba(255,255,255,.85);
+			transition-property: transform;
+			transition-duration: 200ms;
+			transition-timing-function: ease;
+		}
+		
+		.form-control::-webkit-input-placeholder
+		{
+			color: rgba(255,255,255,0.75);
+		}
+		
+		div[data-color="magenta"] .form-control,
+		div[data-color="yellow"] .form-control,
+		div[data-color="white"] .form-control
+		{
+			color: rgba(0,0,0,0.65);
+			background: rgba(0,0,0,0.25);
+		}
+		
+		div[data-color="magenta"] .form-control::-webkit-input-placeholder,
+		div[data-color="yellow"] .form-control::-webkit-input-placeholder,
+		div[data-color="white"] .form-control::-webkit-input-placeholder
+		{
+			color: rgba(0,0,0,0.55);
+		}
+		
+		.form-control:focus
+		{
+
+		}
+		
+		div#buttons
+		{
+			width: 80vw;
+			margin: 0 auto;
+			text-align: center;
+			white-space: nowrap;
+		}
+		
+		button#addbutton,
+		button#copybutton,
+		button#link
+		{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			-o-appearance: none;
+			appearance: none;
+			background: #f4836c;
+			font-size: 3.2vw;
+			border: 0;
+			padding: 0.3em 1em 0.5em 1em;
+			border-radius: 0.8rem;
+			color: #fff;
+			line-height: 1em;
+			top: 0;
+			left: 0;
+			cursor: pointer;
+			display: inline-block;
+			text-align: center;
+		}
+		
+		button#addbutton
+		{
+			font-size: 2.4rem;
+			line-height: 1.6rem;
+			display: block;
+			margin: -3rem 10vw 0 auto;
+		}
+
+		button#copybutton
+		{
+			background: #8640ce;
+			font-weight: 200;
+			width: 45%;
+		}
+		
+		button#link
+		{
+			background: #3cd8b9;
+			width: 45%;
+
+		}
+		
+		button#link a
+		{
+			text-decoration: none;
+			color: inherit;
+			font-weight: 200;
+		}
+		
+		pre
+		{
+			font-family: monospace;
+			width: 80vw;
+			margin: 3.6rem auto;
+			background: #132637;
+			color: #f7f8f1;
+			white-space: pre-line;
+			font-size: 1.2rem;
+			padding: 1.2rem;
+			border-radius: 0.8rem;
+			text-align: left;
+		}
+		
     </style>
 </head>
 <body>
+	<header>
+		<h1>Get you a multitail</h1>
+		<p>Build yourself some wicked multitail commands and share them with your friends.</p>
+		
+		<div style="text-align: right;">
+		<a class="github-button" href="https://github.com/foozmeat/getyouamultitail" data-count-href="/foozmeat/getyouamultitail/stargazers" data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
+		
+		<a class="github-button" href="https://github.com/foozmeat/getyouamultitail/fork" data-count-href="/foozmeat/getyouamultitail/network" data-count-api="/repos/foozmeat/getyouamultitail#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
+		</div>
 
-<div class="container">
-
-    <div class="jumbotron">
-        <h1>Get you a multitail</h1>
-        <p class="lead">Build yourself some wicked multitail commands and share them with your friends.</p>
-        <div>
-            <a class="github-button" href="https://github.com/foozmeat/getyouamultitail" data-style="mega" data-count-href="/foozmeat/getyouamultitail/stargazers" data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
-
-            <a class="github-button" href="https://github.com/foozmeat/getyouamultitail/fork" data-style="mega" data-count-href="/foozmeat/getyouamultitail/network" data-count-api="/repos/foozmeat/getyouamultitail#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <form id="builder" class="form-inline"></form>
-
-        <button id="addbutton" name="addbutton" class="btn btn-primary">Add Another Log</button>
-
-        <button id="copybutton" class="btn" data-clipboard-target="#result">Copy to clipboard</button>
-
-        <div class="panel-footer"><pre id="result"></pre></div>
-
-    </div>
-
-    <div id="link"><a href="#">Link to this script</a></div>
-
-</div>
-
-<!-- New Log Template -->
-<div id="logformlinetemplate" class="row panel-body">
-
-    <div class="input-group">
-        <label for="logsplit" class="control-label">Split</label>
-        <input type="checkbox" class="form-control" id="logsplit" checked="checked">
-    </div>
-
-    <div class="input-group">
-        <label for="loglabel" class="control-label">Label</label>
-        <input type="text" id="loglabel" class="form-control" placeholder="syslog" value="syslog">
-    </div>
-
-    <div class="input-group">
-        <label for="logcolor" class="control-label">Color</label>
-        <select name="logcolor" id="logcolor" class="form-control">
-            <option selected value="">-</option>
-            <option>black</option>
-            <option>red</option>
-            <option>green</option>
-            <option>yellow</option>
-            <option>blue</option>
-            <option>magenta</option>
-            <option>white</option>
-        </select>
-    </div>
-
-    <div class="input-group">
-        <label for="logssh" class="control-label">SSH</label>
-        <input type="text" id="logssh" class="form-control" value="mail.panic.com" placeholder="user@host">
-    </div>
-    <div class="input-group">
-        <label for="logfile" class="control-label">File</label>
-        <input type="text" id="logfile" class="form-control" value="/var/log/syslog"
-               placeholder="/var/log/syslog">
-    </div>
-</div>
-
+	</header>
+	
+	<form id="builder" class="form-inline">
+	
+	</form>
+	
+	<button id="addbutton" name="addbutton">+</button>
+	
+	<pre id="result"></pre>
+	
+	<div id="buttons">
+		<button id="copybutton" data-clipboard-target="#result">Copy to <span style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
+		<button id="link"><a href="#">Link to this script</a></button>
+	</div>
+	
+	<div id="logformlinetemplate">
+	    
+	    <div class="input-group">
+	        <label for="logsplit" class="control-label">Split</label>
+	        <input type="checkbox" class="form-control" id="logsplit">
+	    </div>
+	    	
+	    <div class="input-group">
+	        <label for="loglabel" class="control-label">Label</label>
+	        <input id="loglabel" class="form-control" placeholder="Label">
+	    </div>
+	
+	    <div class="input-group">
+	      <label for="logcolor" class="control-label">Color</label>
+	      <select name="logcolor" id="logcolor" class="form-control" onchange='this.parentNode.parentNode.setAttribute("data-color",this.value);'>
+	          <option id="colorOption" selected value="">Color</option>
+	          <option id="blackOption" value="black">black</option>
+	          <option id="redOption">red</option>
+	          <option id="greenOption">green</option>
+	          <option id="yellowOption">yellow</option>
+	          <option id="blueOption">blue</option>
+	          <option id="magentaOption">magenta</option>
+	          <option id="whiteOption">white</option>
+	      </select>
+	    </div>
+	
+	    <div class="input-group">
+	        <label for="logssh" class="control-label">SSH</label>
+	        <input type="text" id="logssh" class="form-control" placeholder="user@host">
+	    </div>
+	    <div class="input-group">
+	        <label for="logfile" class="control-label">File</label>
+	        <input type="text" id="logfile" class="form-control" placeholder="/var/log/syslog">
+	    </div>
+	</div>
+	
 </body>
 </html>
